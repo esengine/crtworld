@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using XLua;
+using UnityEngine.Networking;
 //using System.Reflection;
 //using System.Linq;
 
@@ -36,15 +37,8 @@ public static class ExampleGenConfig
                 typeof(Transform),
                 typeof(Resources),
                 typeof(TextAsset),
-                typeof(Keyframe),
-                typeof(AnimationCurve),
-                typeof(AnimationClip),
                 typeof(MonoBehaviour),
-                typeof(ParticleSystem),
-                typeof(SkinnedMeshRenderer),
-                typeof(Renderer),
-                typeof(WWW),
-                typeof(Light),
+                typeof(UnityWebRequest),
                 typeof(Mathf),
                 typeof(System.Collections.Generic.List<int>),
                 typeof(Action<string>),
