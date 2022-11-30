@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CRTWorldEditor.Core;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Panel = System.Windows.Forms.Panel;
 
 namespace CRTWorldEditor.Controls
 {
@@ -20,9 +14,21 @@ namespace CRTWorldEditor.Controls
     /// </summary>
     public partial class SceneControl : UserControl
     {
+        private AppContainer container;
+
         public SceneControl()
         {
             InitializeComponent();
+
+            var unityHost = new Panel();
+            Host.Child = unityHost;
+
+            var exePath = Path.Combine(Environment.CurrentDirectory, "unity", "CRTWorld.exe");
+            if (!File.Exists(exePath) )
+                return;
+
+            container = new AppContainer(unityHost);
+            container.StartAndEmbedProcess(exePath);
         }
     }
 }
