@@ -11,13 +11,12 @@
   <ItemGroup>
     <PackageReference Include="Dirkster.AvalonDock" Version="4.70.3" />
     <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.70.3" />
-    <PackageReference Include="Enterwell.Clients.Wpf.Notifications" Version="1.4.2" />
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.BoxIcons" Version="4.11.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
     <PackageReference Include="NLog" Version="5.1.0" />
-    <PackageReference Include="NLog.Config" Version="4.7.15" />
-    <PackageReference Include="NLog.Schema" Version="5.1.0" />
     <PackageReference Include="NlogViewer" Version="0.7.0" />
-    <PackageReference Include="WPFThemes.DarkBlend" Version="1.0.8" />
+    <PackageReference Include="VirtualizingWrapPanel" Version="1.5.7" />
   </ItemGroup>
 
 </Project>

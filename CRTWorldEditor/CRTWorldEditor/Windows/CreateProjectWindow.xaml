@@ -1,0 +1,86 @@
+﻿<Window x:Class="CRTWorldEditor.Windows.CreateProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:controls="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="创建新项目" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Background="{StaticResource AttentionToActionBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="模板" Margin="10" FontWeight="Bold"></TextBlock>
+                <ListBox Grid.Row="1" x:Name="projectTypeList">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:VirtualizingWrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBoxItem Width="140" Height="150">
+                        <Grid Margin="42 0 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <iconpacks:PackIconMaterial Grid.Row="0" Kind="Gamepad" Margin="10"></iconpacks:PackIconMaterial>
+                            <TextBlock Grid.Row="1" Text="2D" HorizontalAlignment="Center"></TextBlock>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem Width="140" Height="150" IsEnabled="False">
+                        <Grid Margin="42 0 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <iconpacks:PackIconMaterial Grid.Row="0" Kind="Gamepad" Margin="10"></iconpacks:PackIconMaterial>
+                            <TextBlock Grid.Row="1" Text="3D" HorizontalAlignment="Center"></TextBlock>
+                        </Grid>
+                    </ListBoxItem>
+                </ListBox>
+            </Grid>
+            <Border Grid.Column="1" Margin="10">
+                <StackPanel>
+                    <TextBlock Text="设置" FontWeight="Bold"></TextBlock>
+                    <TextBox Text="新建项目" Margin="0 20 0 0" materialDesign:HintAssist.Hint="项目名称 *" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    <Grid Margin="0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox materialDesign:HintAssist.Hint="位置 *" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" x:Name="projectPath"></TextBox>
+                        <Button Grid.Column="1" Style="{DynamicResource MaterialDesignToolButton}" Click="OnBrowserClick">
+                            <iconpacks:PackIconMaterial Kind="Folder"></iconpacks:PackIconMaterial>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Border Grid.Row="1" Background="{StaticResource AttentionToActionBrush}" BorderThickness="0.5" BorderBrush="{StaticResource MaterialDesignCardBackground}">
+            <WrapPanel  HorizontalAlignment="Right" Margin="5">
+                <Button Content="取消" MinWidth="120" MinHeight="40" Margin="5" IsCancel="True"></Button>
+                <Button Content="创建" MinWidth="120" MinHeight="40" Margin="5"></Button>
+            </WrapPanel>
+        </Border>
+    </Grid>
+</Window>
