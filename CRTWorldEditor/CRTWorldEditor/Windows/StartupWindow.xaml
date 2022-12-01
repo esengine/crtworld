@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CRTWorldEditor.Windows" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:CRTWorldEditor.Windows" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:controls="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
+        mc:Ignorable="d" Style="{StaticResource {x:Type Window}}"
         Title="CRTWorld 1.0.0" Height="450" Width="800">
     <Grid>
         <xctk:BusyIndicator DisplayAfter="0">
@@ -39,5 +39,6 @@
             </xctk:BusyIndicator.ProgressBarStyle>
             <!--<ContentControl Style="{StaticResource SampleContent}"/>-->
         </xctk:BusyIndicator>
+        <controls:NotificationMessageContainer x:Name="MessageContainer" />
     </Grid>
 </Window>

@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CRTWorldEditor" xmlns:controls="clr-namespace:CRTWorldEditor.Controls" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:CRTWorldEditor" xmlns:controls="clr-namespace:CRTWorldEditor.Controls" 
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:controls1="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications" xmlns:nlogviewer="clr-namespace:NlogViewer;assembly=NlogViewer"
         mc:Ignorable="d" Style="{StaticResource {x:Type Window}}"
         Title="CRTWorld" Height="450" Width="800">
     <Grid>
@@ -17,6 +18,11 @@
                             </LayoutDocument>
                         </LayoutDocumentPane>
                     </LayoutDocumentPaneGroup>
+                    <LayoutAnchorablePane>
+                        <LayoutAnchorable Title="日志">
+                            <nlogviewer:NlogViewer/>
+                        </LayoutAnchorable>
+                    </LayoutAnchorablePane>
                 </LayoutPanel>
             </LayoutRoot>
         </DockingManager>
@@ -52,5 +58,6 @@
             </xctk:BusyIndicator.ProgressBarStyle>
             <!--<ContentControl Style="{StaticResource SampleContent}"/>-->
         </xctk:BusyIndicator>
+        <controls1:NotificationMessageContainer x:Name="MessageContainer" />
     </Grid>
 </Window>

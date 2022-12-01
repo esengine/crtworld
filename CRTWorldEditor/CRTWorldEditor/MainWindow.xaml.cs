@@ -1,6 +1,9 @@
 ﻿using AvalonDock.Layout;
 using AvalonDock.Themes;
+using Enterwell.Clients.Wpf.Notifications;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace CRTWorldEditor
 {
@@ -14,6 +17,7 @@ namespace CRTWorldEditor
             InitializeComponent();
 
             dockingManager.Theme = new Vs2013DarkTheme();
+            MessageContainer.Manager = new NotificationMessageManager();
         }
     }
 }
