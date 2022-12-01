@@ -1,6 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CRTWorldEditor.Datas;
+using MaterialDesignThemes.Wpf;
+using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CRTWorldEditor.ViewModels
@@ -35,6 +40,32 @@ namespace CRTWorldEditor.ViewModels
             {
                 ProjectPath = folderDialog.SelectedPath;
             }
+        }
+
+        [RelayCommand(CanExecute = "CheckCreateCanExecute")]
+        public void OnCreateProjectCommand() { 
+            if (!Directory.Exists(ProjectPath)) {
+                return;
+            }
+
+            var projectSettingsFolder = Path.Combine(ProjectPath, "ProjectSettings");
+            Directory.CreateDirectory(projectSettingsFolder);
+
+            var projectSettings = new ProjectSettings();
+            projectSettings.playerSettings.projectName = ProjectName;
+            using (var streamWriter = new StreamWriter(Path.Combine(projectSettingsFolder, ProjectSettings.name)))
+            {
+                streamWriter.Write(JsonConvert.SerializeObject(projectSettings));
+            }
+        }
+
+        public bool CheckCreateCanExecute() { 
+            if (string.IsNullOrEmpty(ProjectName) || string.IsNullOrEmpty(ProjectPath))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
