@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using CRTWorldEditor.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,16 +27,8 @@ namespace CRTWorldEditor.Windows
         {
             InitializeComponent();
 
+            DataContext = new CreateProjectViewModel();
             projectTypeList.SelectedIndex = 0;
-        }
-
-        private void OnBrowserClick(object sender, RoutedEventArgs e)
-        {
-            var folderDialog = new FolderBrowserDialog();
-            folderDialog.ShowNewFolderButton = true;
-            if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                projectPath.Text = folderDialog.SelectedPath;
-            }
         }
     }
 }
