@@ -1,27 +1,14 @@
-﻿<Window x:Class="CRTWorldEditor.MainWindow"
+﻿<Window x:Class="CRTWorldEditor.Windows.StartupWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CRTWorldEditor" xmlns:controls="clr-namespace:CRTWorldEditor.Controls" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        mc:Ignorable="d" Style="{StaticResource {x:Type Window}}"
-        Title="CRTWorld" Height="450" Width="800">
+        xmlns:local="clr-namespace:CRTWorldEditor.Windows" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="CRTWorld 1.0.0" Height="450" Width="800">
     <Grid>
-        <DockingManager x:Name="dockingManager">
-            <LayoutRoot>
-                <LayoutPanel>
-                    <LayoutDocumentPaneGroup>
-                        <LayoutDocumentPane>
-                            <LayoutDocument Title="场景">
-                                <controls:SceneControl></controls:SceneControl>
-                            </LayoutDocument>
-                        </LayoutDocumentPane>
-                    </LayoutDocumentPaneGroup>
-                </LayoutPanel>
-            </LayoutRoot>
-        </DockingManager>
-        <xctk:BusyIndicator IsBusy="True"  DisplayAfter="0">
-            <xctk:BusyIndicator.BusyContentTemplate>
+        <xctk:BusyIndicator DisplayAfter="0">
+            <!--<xctk:BusyIndicator.BusyContentTemplate>
                 <DataTemplate>
                     <StackPanel Margin="4">
                         <TextBlock Text="Downloading Email" FontWeight="Bold" HorizontalAlignment="Center"/>
@@ -39,10 +26,10 @@
                         </Grid>
                     </StackPanel>
                 </DataTemplate>
-            </xctk:BusyIndicator.BusyContentTemplate>
+            </xctk:BusyIndicator.BusyContentTemplate>-->
             <xctk:BusyIndicator.OverlayStyle>
                 <Style TargetType="Rectangle">
-                    <Setter Property="Fill" Value="#ffffeeee"/>
+                    <Setter Property="Fill" Value="#1a1a1a1a"/>
                 </Style>
             </xctk:BusyIndicator.OverlayStyle>
             <xctk:BusyIndicator.ProgressBarStyle>
