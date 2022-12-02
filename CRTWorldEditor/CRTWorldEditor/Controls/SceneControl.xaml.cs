@@ -28,27 +28,46 @@ namespace CRTWorldEditor.Controls
         {
             InitializeComponent();
 
+            Loaded += SceneControl_Loaded;
+        }
+
+        private void SceneControl_Loaded(object sender, RoutedEventArgs e)
+        {
             var unityHost = new Panel();
             Host.Child = unityHost;
 
             var exePath = Path.Combine(Environment.CurrentDirectory, "unity", "CRTWorld.exe");
-            if (!File.Exists(exePath) )
+            if (!File.Exists(exePath))
                 return;
 
             StartServer();
 
             container = new AppContainer(unityHost);
             container.StartAndEmbedProcess(exePath);
+
+            Application.Current.Exit += Current_Exit;
+        }
+
+        private void Current_Exit(object sender, ExitEventArgs e)
+        {
+            container.CloseProcess();
         }
 
         private void StartServer() {
-            var ip = IPAddress.Parse("127.0.0.1");
-            serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            serverSocket.Bind(new IPEndPoint(ip, 9090));
-            serverSocket.Listen(10);
-            myThread = new Thread(ListenClientConnect);
-            myThread.IsBackground = true;
-            myThread.Start();
+            try
+            {
+                var ip = IPAddress.Parse("127.0.0.1");
+                serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                serverSocket.Bind(new IPEndPoint(ip, 9090));
+                serverSocket.Listen(10);
+                myThread = new Thread(ListenClientConnect);
+                myThread.IsBackground = true;
+                myThread.Start();
+            }
+            catch { 
+            
+            }
+            
         }
 
         private void ListenClientConnect()

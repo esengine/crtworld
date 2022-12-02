@@ -14,18 +14,24 @@
         </Grid.RowDefinitions>
         <TabControl>
             <TabItem Header="项目">
-                <DataGrid>
+                <DataGrid ItemsSource="{Binding ProjectViewDatas}"  
+                          AutoGenerateColumns="False" 
+                          CanUserAddRows="False" 
+                          CanUserDeleteRows="False" 
+                          CanUserResizeRows="False" 
+                          CanUserSortColumns="False" 
+                          CanUserReorderColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="项目名称" Width="*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="目标版本"></DataGridTextColumn>
-                        <DataGridTextColumn Header="最后修改"></DataGridTextColumn>
+                        <DataGridTextColumn Header="项目名称" Width="*" Binding="{Binding Name}" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="目标版本" Binding="{Binding Platform}" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="最后修改" MinWidth="150" Binding="{Binding LastOpenTime}" IsReadOnly="True"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
         </TabControl>
 
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="5">
-            <Button Content="添加" MinWidth="120" MinHeight="20"></Button>
+            <Button Content="添加" MinWidth="120" MinHeight="20" Click="OnLoadProjectClick"></Button>
             <Button Content="新建" MinWidth="120" MinHeight="20" Margin="5 0 0 0" Click="OnCreateProjectClick"></Button>
         </WrapPanel>
     </Grid>

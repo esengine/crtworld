@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using CRTWorldEditor.Datas;
+using CRTWorldEditor.ViewModels;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,11 +13,13 @@ namespace CRTWorldEditor.Windows
     /// <summary>
     /// StartupWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class StartupWindow : Window
+    public partial class StartupWindow : Window, IRecipient<CreateProjectCompletedMessage>
     {
         public StartupWindow()
         {
             InitializeComponent();
+
+            DataContext = new StartupViewModel();
 
             listBox.SelectionChanged += ListBox_SelectionChanged;
             listBox.SelectedIndex = 0;
@@ -24,6 +29,14 @@ namespace CRTWorldEditor.Windows
                 MainSnackbar.MessageQueue?.Enqueue("欢迎使用CRTWORLD编辑器");
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
+
+            WeakReferenceMessenger.Default.Register(this);
+        }
+
+        public void Receive(CreateProjectCompletedMessage message)
+        {
+            new MainWindow().Show();
+            Hide();
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -31,7 +44,7 @@ namespace CRTWorldEditor.Windows
             var item = listBox.SelectedValue as ListBoxItem;
             if (item != null)
             {
-                frame.Navigate(new Uri($"Pages/{item.Tag}.xaml", UriKind.Relative));
+                frame.Navigate(new Uri($"Pages/{item.Tag}.xaml", UriKind.Relative), this);
             }
         }
     }

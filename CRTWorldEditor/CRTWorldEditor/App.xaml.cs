@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Globalization;
+using System.Threading;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace CRTWorldEditor
 {
@@ -15,8 +12,12 @@ namespace CRTWorldEditor
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-Hans");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-Hans");
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
+                        XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
+            base.OnStartup(e);
         }
     }
 }

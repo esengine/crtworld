@@ -16,5 +16,11 @@ namespace CRTWorldEditor.Datas
     [Serializable]
     public class PlayerSettings {
         public string projectName;
+        public TargetPlatform platform;
+        public DateTime lastOpenedTime;
+    }
+
+    public enum TargetPlatform { 
+        Windows
     }
 }

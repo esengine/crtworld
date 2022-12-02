@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CRTWorldEditor" xmlns:controls="clr-namespace:CRTWorldEditor.Controls" 
-        xmlns:nlogviewer="clr-namespace:NlogViewer;assembly=NlogViewer" xmlns:busyIndicator="https://github.com/Peoky/BusyIndicator"
-        mc:Ignorable="d" Style="{StaticResource {x:Type Window}}"
-        Title="CRTWorld" Height="450" Width="800">
+        xmlns:controls="clr-namespace:CRTWorldEditor.Controls" 
+        mc:Ignorable="d" Style="{StaticResource MaterialDesignWindow}"
+        Title="CRTWorld" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <DockingManager x:Name="dockingManager">
             <LayoutRoot>
@@ -18,11 +17,6 @@
                             </LayoutDocument>
                         </LayoutDocumentPane>
                     </LayoutDocumentPaneGroup>
-                    <LayoutAnchorablePane>
-                        <LayoutAnchorable Title="日志">
-                            <nlogviewer:NlogViewer/>
-                        </LayoutAnchorable>
-                    </LayoutAnchorablePane>
                 </LayoutPanel>
             </LayoutRoot>
         </DockingManager>

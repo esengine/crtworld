@@ -1,8 +1,5 @@
-﻿using AvalonDock.Layout;
-using AvalonDock.Themes;
+﻿using AvalonDock.Themes;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace CRTWorldEditor
 {
@@ -16,6 +13,12 @@ namespace CRTWorldEditor
             InitializeComponent();
 
             dockingManager.Theme = new Vs2013DarkTheme();
+            Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

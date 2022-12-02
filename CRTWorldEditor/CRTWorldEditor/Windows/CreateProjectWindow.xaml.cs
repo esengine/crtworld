@@ -1,27 +1,14 @@
-﻿using CommunityToolkit.Mvvm.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using CRTWorldEditor.Datas;
 using CRTWorldEditor.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CRTWorldEditor.Windows
 {
     /// <summary>
     /// CreateProjectWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class CreateProjectWindow : Window
+    public partial class CreateProjectWindow : Window, IRecipient<CreateProjectCompletedMessage>
     {
         public CreateProjectWindow()
         {
@@ -29,6 +16,13 @@ namespace CRTWorldEditor.Windows
 
             DataContext = new CreateProjectViewModel();
             projectTypeList.SelectedIndex = 0;
+
+            WeakReferenceMessenger.Default.Register(this);
+        }
+
+        public void Receive(CreateProjectCompletedMessage message)
+        {
+            Close();
         }
     }
 }

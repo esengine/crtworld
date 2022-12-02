@@ -1,18 +1,11 @@
-﻿using CRTWorldEditor.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using CRTWorldEditor.Core;
+using CRTWorldEditor.ViewModels;
+using CRTWorldEditor.Windows;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.Windows.Forms;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CRTWorldEditor.Pages
 {
@@ -24,11 +17,26 @@ namespace CRTWorldEditor.Pages
         public ProjectPage()
         {
             InitializeComponent();
+
+            DataContext = new ProjectViewModel();
         }
 
         private void OnCreateProjectClick(object sender, RoutedEventArgs e)
         {
-            new CreateProjectWindow().ShowDialog();
+            var result = new CreateProjectWindow().ShowDialog();
+            if (result == true) {
+                
+            }
+        }
+
+        private void OnLoadProjectClick(object sender, RoutedEventArgs e)
+        {
+            var folderDialog = new FolderBrowserDialog();
+            if (folderDialog.ShowDialog() == DialogResult.OK) {
+                if (CrtApp.LoadProject(folderDialog.SelectedPath)) {
+                    new MainWindow().Show();
+                }
+            }
         }
     }
 }
